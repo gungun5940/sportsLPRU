@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteBase /
+
+# Defines 404 error pages content:
+ErrorDocument 404 /adminlteV2/errors/404.php
+
+# for all invalid links (non existing files):
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* - [L,R=404]
+
+# for some valid links (existing files to be un-accessible):
+RewriteCond %{THE_REQUEST} ^.*some_file.php.*$ [NC]
+RewriteRule .* - [L,R=404]
