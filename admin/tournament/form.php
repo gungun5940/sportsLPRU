@@ -73,6 +73,7 @@ if (!empty($_GET["id"])) {
                             }
                             ?>
                             <div class="invalid-feedback"></div>
+                            <p for="sport"><span style="color:red">*กรณีมีการแก้ไขกีฬาใหม่ ข้อมูลของกีฬาและทีมใน Tournament นั้นจะต้องทำการเพิ่มข้อมูลใหม่ทั้งหมด</span></p>
                         </div>
                         <div class="form-group">
                             <label for="startdate">วันที่เริ่ม</label>

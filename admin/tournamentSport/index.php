@@ -42,7 +42,8 @@ if( !empty($_GET["id"]) ){
                             <th width="5%">ลำดับ</th>
                             <th width="15%">วันที่เริ่ม</th>
                             <th width="15%">วันที่สิ้นสุด</th>
-                            <th width="30%">ชนิดกีฬา</th>
+                            <th width="15%">ชนิดกีฬา</th>
+                            <th width="15%">สถานที่แข่ง</th>
                             <th width="35%">จัดการ</th>
                         </tr>
                     </thead>
@@ -57,9 +58,10 @@ if( !empty($_GET["id"]) ){
                                 <td><?php echo dateTH($res["ts_startdate"]); ?></td>
                                 <td><?php echo dateTH($res["ts_enddate"]); ?></td>
                                 <td><?php echo $res["sport_name"]; ?></td>
+                                <td><?php echo $res["ts_place"]; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users"></i>จัดการทีม</a>
-                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
+                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>จัดการทีม</a>
+                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
                                     <?php
                                     $ops = [
                                         "title" => "ยืนยันการลบข้อมูล",
@@ -68,7 +70,7 @@ if( !empty($_GET["id"]) ){
                                         "textconfirm" => "ลบข้อมูล"
                                     ];
                                     ?>
-                                    <a href="<?= URL ?>admin/tournament/delete.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
+                                    <a href="<?= URL ?>admin/tournamentSport/delete.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
                                         <i class="fa fa-trash"></i> ลบ
                                     </a>
                                 </td>
