@@ -9,18 +9,13 @@ include($_pathURL . "admin/layouts/navbar.php");
 //MENU
 include($_pathURL . "admin/layouts/menu.php");
 
-// $sql->table = "tournament_sport ts LEFT JOIN sport sp ON t.sport_id=sp.sport_id";
-// $sql->field = "ts.*, sp.sport_name";
-// $query = $sql->select();
 if( !empty($_GET["id"]) ){
+    $sql->table = "tournament_sport ts LEFT JOIN sport sp ON ts.sport_id=sp.sport_id";
     $sql->field = "ts.*, sp.sport_name";
-    $sql->table = "tournament_sport ts LEFT JOIN sport sp ON t.sport_id=sp.sport_id";
-    // $sql->field="*";
-    $sql->condition="WHERE ts_id={$_GET["id"]}";
-    $query = mysqli_fetch_assoc($sql->select());
-  }
-  else{
-    // header("location:".URL."admin/tournamentSport/form.php?page=sport&sub=tournamentSport");
+    $sql->condition="WHERE tournament_id={$_GET["id"]}";
+    $query = $sql->select();
+} else {
+    header("location:" . URL . "admin/tournamentSport/index.php?page=sport&sub=tournamentSport");
 }
 ?>
 <!-- Content -->
@@ -59,8 +54,8 @@ if( !empty($_GET["id"]) ){
                         ?>
                             <tr>
                                 <td class="text-center"><?php echo $num; ?></td>
-                                <td><?php echo $res["startdate"]; ?></td>
-                                <td><?php echo $res["enddate"]; ?></td>
+                                <td><?php echo dateTH($res["ts_startdate"]); ?></td>
+                                <td><?php echo dateTH($res["ts_enddate"]); ?></td>
                                 <td><?php echo $res["sport_name"]; ?></td>
                                 <td class="text-center">
                                     <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users"></i>จัดการทีม</a>

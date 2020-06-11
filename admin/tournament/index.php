@@ -49,12 +49,12 @@ $query = $sql->select();
                         ?>
                             <tr>
                                 <td class="text-center"><?php echo $num; ?></td>
-                                <td><?php echo $res["startdate"]; ?></td>
-                                <td><?php echo $res["enddate"]; ?></td>
+                                <td><?php echo dateTH($res["startdate"]); ?></td>
+                                <td><?php echo dateTH($res["enddate"]); ?></td>
                                 <td><?php echo $res["tournament_name"]; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= URL ?>admin/tournamentSport/index.php?page=sport&sub=tournamentSport<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["tournament_id"]; ?>" class="btn btn-success"><i class="fas fa-running mr-1"></i></i>จัดการกีฬา/ทีม</a>
-                                    <a href="<?= URL ?>admin/tournament/form.php?page=sport&sub=tournament<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["tournament_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i></i>แก้ไข</a>
+                                    <a href="<?= URL ?>admin/tournamentSport/index.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["tournament_id"]; ?>" class="btn btn-success"><i class="fas fa-running mr-1"></i></i>จัดการกีฬา/ทีม</a>
+                                    <a href="<?= URL ?>admin/tournament/form.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["tournament_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i></i>แก้ไข</a>
                                     <?php
                                     $ops = [
                                         "title" => "ยืนยันการลบข้อมูล",
