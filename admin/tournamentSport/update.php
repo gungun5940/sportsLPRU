@@ -47,17 +47,6 @@ if( empty($arr["error"]) ){
 	$sql->value = "ts_startdate='{$_POST["ts_startdate"]}',ts_enddate='{$_POST["ts_enddate"]}',ts_place='{$_POST["ts_place"]}'";
 	$sql->condition = "WHERE ts_id={$_POST["ts_id"]}";
 	if( $sql->update() ){
-        // $sql->table = "tournament_sport";
-        // $sql->condition = "WHERE tournament_id={$_POST["tournament_id"]}";
-        // $sql->delete();
-
-        // //INSERT ประเภทกีฬา
-        // for($i = 0; $i < count($_POST["sport_id"]); $i++){
-        //     $sql->table = "tournament_sport";
-        //     $sql->field = "tournament_id,sport_id";
-        //     $sql->value = "'{$_POST["tournament_id"]}','{$_POST["sport_id"][$i]}'";
-        //     $query = $sql->insert();
-        // }
 	$arr = [
 			"type" => "success",
 			"title" => "บันทึกข้อมูลเรียบร้อยแล้ว",

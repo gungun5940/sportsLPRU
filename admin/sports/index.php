@@ -35,7 +35,8 @@ $query = $sql->select();
           <thead>
             <tr class="text-center table-info">
               <th width="10%">ลำดับ</th>
-              <th width="70%">ชนิดกีฬา</th>
+              <th width="50%">ชนิดกีฬา</th>
+              <th width="20%">จำนวนผู้เล่นต่อทีม</th>
               <th width="20%">จัดการ</th>
             </tr>
           </thead>
@@ -48,6 +49,7 @@ $query = $sql->select();
               <tr>
                 <td class="text-center"><?php echo $num; ?></td>
                 <td><?php echo $res["sport_name"]; ?></td>
+                <td><?php echo $res["sport_player"]; ?></td>
                 <td class="text-center">
                   <a href="<?= URL ?>admin/sports/form.php?page=<?=$_GET["page"]?>&sub=<?=$_GET["sub"]?>&id=<?php echo $res["sport_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
                   <?php 

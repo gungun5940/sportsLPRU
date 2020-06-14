@@ -53,7 +53,7 @@ if( empty($arr["error"]) ){
 
 	$sql->table = "team";
 	// $sql->value = $value;
-	$sql->value = "team_name='{$_POST["team_name"]}',sport_id='{$_POST["sport_id"]}'";
+	$sql->value = "team_name='{$_POST["team_name"]}'";
 	$sql->condition = "WHERE team_id={$_POST["team_id"]}";
 	if( $sql->update() ){
 	$arr = [

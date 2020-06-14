@@ -46,6 +46,11 @@ if (!empty($_GET["id"])) {
 							<input type="text" class="form-control" id="sport_name" name="sport_name" placeholder="ชนิดกีฬา" value="<?= !empty($res["sport_name"]) ? $res["sport_name"] : "" ?>">
 							<div class="invalid-feedback"></div>
 						</div>
+						<div class="form-group">
+							<label for="sport_player">จำนวนผู้เล่นต่อทีม</label>
+							<input type="text" class="form-control" id="sport_player" name="sport_player" placeholder="จำนวนผู้เล่นต่อทีม" value="<?= !empty($res["sport_player"]) ? $res["sport_player"] : "" ?>">
+							<div class="invalid-feedback"></div>
+						</div>
 						<?php 
 						if( !empty($res["sport_id"]) ) echo '<input type="hidden" name="sport_id" value="'.$res["sport_id"].'">';
 						?>

@@ -22,8 +22,8 @@ if (!empty($_POST["team_name"])) {
 
 if (empty($arr["error"])) {
     $sql->table = "team";
-    $sql->field = "team_name,sport_id";
-    $sql->value = "'{$_POST["team_name"]}','{$_POST["sport_id"]}'";
+    $sql->field = "team_name";
+    $sql->value = "'{$_POST["team_name"]}'";
     if ($sql->insert()) {
         $arr = [
             "type" => "success",

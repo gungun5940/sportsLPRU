@@ -14,6 +14,9 @@ if (mysqli_num_rows($query) < 0) {
     $arr["status"] = 422;
 } else {
     if ($sql->delete()) {
+        $sql->table = "tournament_sport";
+        $sql->condition = "WHERE sport_id={$_GET["id"]}";
+        $sql->delete();
         $arr["type"] = "success";
         $arr["title"] = "ลบข้อมูลเรียบร้อยแล้ว";
         $arr["url"] = "refresh";
@@ -23,5 +26,15 @@ if (mysqli_num_rows($query) < 0) {
         $arr["title"] = "ไม่สามารถลบข้อมูลได้ เนื่องจากข้อมูลมีการใช้งานอยู่";
         $arr["status"] = 422;
     }
+    // if ($sql->delete()) {
+    //     $arr["type"] = "success";
+    //     $arr["title"] = "ลบข้อมูลเรียบร้อยแล้ว";
+    //     $arr["url"] = "refresh";
+    //     $arr["status"] = 200;
+    // } else {
+    //     $arr["type"] = "error";
+    //     $arr["title"] = "ไม่สามารถลบข้อมูลได้ เนื่องจากข้อมูลมีการใช้งานอยู่";
+    //     $arr["status"] = 422;
+    // }
 }
 echo json_encode($arr);

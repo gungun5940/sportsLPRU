@@ -70,7 +70,7 @@ if (!empty($_GET["id"])) {
                     </div>
                     <div class="card-footer">
                         <div class="clearfix">
-                            <a href="<?= URL ?>admin/tournament/?page=sport&sub=tournamentSport" class="btn btn-danger float-left">
+                            <a href="<?= URL ?>admin/tournamentSport/?page=<?=$_GET["page"]?>&id=<?= $res["tournament_id"]; ?>" class="btn btn-danger float-left">
                                 <i class="fa fa-arrow-left"></i> กลับหน้าหลัก
                             </a>
                             <button type="submit" class="btn btn-primary btn-submit float-right">

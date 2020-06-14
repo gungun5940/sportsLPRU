@@ -43,33 +43,37 @@ if (!empty($_GET["id"])) {
                     <div class="card-body">
                         <div class="form-group">
                             <label for="team_name">ทีม</label>
-                            <input type="text" class="form-control" id="team_name" name="team_name" placeholder="ทีม" value="<?= !empty($res["team_name"]) ? $res["team_name"] : "" ?>">
+                            <input type="text" class="form-control" id="team_name" name="team_name" placeholder="ชื่อทีม" value="<?= !empty($res["team_name"]) ? $res["team_name"] : "" ?>">
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group">
-                            <label for="sport">ชนิดกีฬา</label>
                             <?php
                             $sql->table = "sport";
                             $sql->field = "*";
                             $sql->condition = "";
-                            $typeQuery = $sql->select();
-                            ?>
-                            <select class="form-control" id="sport" name="sport_id">
-                                <option value="<?= !empty($res["sport_name"]) ? $res["sport_name"] : "" ?>">เลือกชนิดกีฬา</option>
-                                <?php
-                                while ($type = mysqli_fetch_assoc($typeQuery)) {
-                                    $sel = "";
-                                    if (!empty($res["sport_id"])) {
-                                        if ($res["sport_id"] == $type["sport_id"]) $sel = 'selected';
-                                    }
-                                ?>
-                                    <option <?= $sel ?> value="<?= $type["sport_id"] ?>"><?= $type["sport_name"] ?></option>
-                                <?php
+                            $query = $sql->select();
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                if( !empty($res["sport_id"]) ){
+                                    $sql->table = "sport";
+                                    $sql->condition = "WHERE sport_id={$row["sport_id"]}";
                                 }
-                                ?>
-                            </select>
-                            <div class="invalid-feedback"></div>
+                                
+                                // for($i = 0; $i < count($_POST["sport_player"]); $i++){
+                                //     $sql->table = "sport";
+                                //     $sql->field = "sport_player";
+                                //     $sql->condition = "";
+                                // }
+                            ?>
+                                <div class="form-group">
+                                    <label for="player">สมาชิกทีม</label>
+                                    <input type="text" class="form-control" id="player_name" name="player_name" placeholder="ชื่อสมาชิกทีม" value="<?= !empty($row["player_name"]) ? $row["player_name"] : "" ?>">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
+
                         <?php
                         if (!empty($res["team_id"])) echo '<input type="hidden" name="team_id" value="' . $res["team_id"] . '">';
                         ?>
