@@ -5,8 +5,8 @@ include("../../app/SQLiManager.php");
 $sql = new SQLiManager();
 
 //CHECK DATA BEFORE DELETE
-$sql->table = "team";
-$sql->condition = "WHERE team_id={$_GET["id"]}";
+$sql->table = "player";
+$sql->condition = "WHERE player_id={$_GET["id"]}";
 $query = $sql->select();
 if (mysqli_num_rows($query) < 0) {
     $arr["type"] = "error";
@@ -14,9 +14,6 @@ if (mysqli_num_rows($query) < 0) {
     $arr["status"] = 422;
 } else {
     if ($sql->delete()) {
-        $sql->table = "player";
-        $sql->condition = "WHERE team_id={$_GET["id"]}";
-        $sql->delete();
         $arr["type"] = "success";
         $arr["title"] = "ลบข้อมูลเรียบร้อยแล้ว";
         $arr["url"] = "refresh";

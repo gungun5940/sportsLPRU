@@ -6,15 +6,15 @@ include("../../app/fn.php");
 $sql = new SQLiManager();
 
 /* OLD DATA FOR CHECK */
-$sql->table = "team";
-$sql->condition = "WHERE team_id={$_POST["team_id"]}";
+$sql->table = "player";
+$sql->condition = "WHERE player_id={$_POST["player_id"]}";
 $query = $sql->select();
 if( mysqli_num_rows($query) <= 0 ){
 	$arr = [
 		"title" => "เกิดข้อผิดพลาด",
 		"text" => "ไม่สามารถเข้าถึงข้อมูลที่ต้องการแก้ไข หรือไม่พบข้อมูล",
 		"type" => "error",
-		"url" => URL."admin/team/?page=team"
+		"url" => URL."admin/tournament/?page=sport&sub=tournament"
 	];
 	echo json_encode($arr);
 	exit;
@@ -28,31 +28,33 @@ foreach ($_POST as $key => $value) {
 
 //Check
 
-if( !empty($_POST["team_name"]) ){
+if( !empty($_POST["player_name"]) ){
     $has = true;
-    if( $old["team_name"] == $_POST["team_name"] ) $has = false;
+    if( $old["player_name"] == $_POST["player_name"] ) $has = false;
     
 
-    if( checkStr($_POST["team_name"]) < 5 ) $arr["error"]["team_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
-    $sql->table = "team";
-	$sql->condition = "WHERE team_name='{$_POST["team_name"]}'";
+    if( checkStr($_POST["player_name"]) < 5 ) $arr["error"]["player_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+    $sql->table = "player";
+	$sql->condition = "WHERE player_name='{$_POST["player_name"]}'";
 	$query = $sql->select();
 	if( mysqli_num_rows($query) > 0 && $has ){
-		$arr["error"]["team_name"] = "ตรวจสอบพบข้อมูลทีมซ้ำกันในฐานข้อมูล";
+		$arr["error"]["player_name"] = "ตรวจสอบพบข้อมูลชนิดกีฬาซ้ำกันในฐานข้อมูล";
 	}
 }
 /* END CHECK ZONE */
 if( empty($arr["error"]) ){
-	$sql->table = "team";
-	$sql->value = "team_name='{$_POST["team_name"]}'";
-	$sql->condition = "WHERE team_id={$_POST["team_id"]}";
+	// $value = '';
+	// foreach ($_POST as $key => $val) {
+	// 	if( $key == "player_id" ) continue;
+
+	// 	$value .= !empty($value) ? "," : "";
+	// 	$value .= "{$key}='{$val}'";
+	// }
+
+	$sql->table = "player";
+	$sql->value = "player_name='{$_POST["player_name"]}'";
+	$sql->condition = "WHERE player_id={$_POST["player_id"]}";
 	if( $sql->update() ){
-		foreach( $_POST["player_name"] as $seq => $name ){
-            if( empty($name) ) continue;
-            $sql->table = "player";
-            $sql->field = "team_id, player_name, seq";
-            $sql->value = "'{$_POST["team_id"]}', '{$name}', '{$seq}'";
-        }
 	$arr = [
 			"type" => "success",
 			"title" => "บันทึกข้อมูลเรียบร้อยแล้ว",

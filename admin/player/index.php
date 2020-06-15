@@ -1,5 +1,5 @@
 <?php
-$_title = "จัดการทีม";
+$_title = "จัดการสมาชิกทีม";
 // HEADER
 include("../layouts/header.php");
 
@@ -10,11 +10,11 @@ include($_pathURL . "admin/layouts/navbar.php");
 include($_pathURL . "admin/layouts/menu.php");
 
 if( !empty($_GET["id"]) ){
-  $sql->table = "team";
+  $sql->table = "player";
   $sql->field = "*";
   $query = $sql->select();
 } else {
-  header("location:" . URL . "admin/team/index.php?page=sport&sub=team");
+  header("location:" . URL . "admin/player/index.php?page=sport&sub=player");
 }
 ?>
 <!-- Content -->
@@ -23,10 +23,10 @@ if( !empty($_GET["id"]) ){
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">จัดการทีม</h1>
+          <h1 class="m-0 text-dark">จัดการสมาชิกในทีม</h1>
         </div>
         <div class="col-sm-6">
-          <a href="<?= URL ?>admin/team/form.php?page=team&sub=<?=$_GET["sub"]?>&ts=<?=$_GET["id"]?>" class="btn btn-primary text-white float-right">เพิ่มทีม</a>
+          <!-- <a href="<?= URL ?>admin/player/form.php?page=sport&sub=player" class="btn btn-primary text-white float-right">เพิ่มทีม</a> -->
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@ if( !empty($_GET["id"]) ){
           <thead>
             <tr class="text-center table-info">
               <th width="10%">ลำดับ</th>
-              <th width="40%">ชื่อทีม</th>
+              <th width="40%">ชื่อสมาชิก</th>
               <th width="50%">จัดการ</th>
             </tr>
           </thead>
@@ -51,19 +51,18 @@ if( !empty($_GET["id"]) ){
             ?>
               <tr>
                 <td class="text-center"><?php echo $num; ?></td>
-                <td><?php echo $res["team_name"]; ?></td>
+                <td><?php echo $res["player_name"]; ?></td>
                 <td class="text-center">
-                  <a href="<?= URL ?>admin/player/index.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>สมาชิก</a>
-                  <a href="<?= URL ?>admin/team/form.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"]; ?>&ts=<?=$_GET["id"]?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
+                  <a href="<?= URL ?>admin/player/form.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["player_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
                   <?php
                   $ops = [
                     "title" => "ยืนยันการลบข้อมูล",
-                    "text" => "คุณต้องการลบข้อมูล " . $res["team_name"] . "หรือไม่ ?",
+                    "text" => "คุณต้องการลบข้อมูล " . $res["player_name"] . "หรือไม่ ?",
                     "btnconfirm" => "btn btn-danger m-1",
                     "textconfirm" => "ลบข้อมูล"
                   ];
                   ?>
-                  <a href="<?= URL ?>admin/team/delete.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
+                  <a href="<?= URL ?>admin/player/delete.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["player_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
                     <i class="fa fa-trash"></i> ลบ
                   </a>
                 </td>
