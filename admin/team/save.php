@@ -5,8 +5,15 @@ include("../../app/fn.php");
 
 $sql = new SQLiManager();
 
+// foreach( $_POST["player_name"] as $seq => $name ){
+//     $sql->table = "player";
+//     $sql->field = "team_id, player_name, seq";
+//     $sql->value = "'{$id}', '{$name}', '{$seq}'";
+//     $sql->insert();
+// }
+
 foreach ($_POST as $key => $value) {
-    // if( $key == "sport_name" ) continue;
+    if( $key == "player_name" ) continue;
     if (empty($value)) $arr["error"][$key] = "กรุณากรอกข้อมูลให้ครบถ้วน";
 }
 
@@ -22,13 +29,21 @@ if (!empty($_POST["team_name"])) {
 
 if (empty($arr["error"])) {
     $sql->table = "team";
-    $sql->field = "team_name";
-    $sql->value = "'{$_POST["team_name"]}'";
+    $sql->field = "team_name, ts_id, tournament_id, sport_id";
+    $sql->value = "'{$_POST["team_name"]}', '{$_POST["ts_id"]}', '{$_POST["tournament_id"]}', '{$_POST["sport_id"]}'";
     if ($sql->insert()) {
+        $team_id = mysqli_insert_id($sql->connect);
+        foreach( $_POST["player_name"] as $seq => $name ){
+            if( empty($name) ) continue;
+            $sql->table = "player";
+            $sql->field = "team_id, player_name, seq";
+            $sql->value = "'{$team_id}', '{$name}', '{$seq}'";
+            $sql->insert();
+        }
         $arr = [
             "type" => "success",
             "title" => "บันทึกข้อมูลเรียบร้อยแล้ว",
-            "url" => URL . 'admin/team/?page=team',
+            "url" => URL . 'admin/team/index.php?page=sport&sub=tournament&id='.$_POST["ts_id"],
             "status" => 200
         ];
     } else {

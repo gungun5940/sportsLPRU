@@ -60,8 +60,8 @@ if( !empty($_GET["id"]) ){
                                 <td><?php echo $res["sport_name"]; ?></td>
                                 <td><?php echo $res["ts_place"]; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= URL ?>admin/team/index.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>จัดการทีม</a>
-                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&id=<?= $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
+                                    <a href="<?= URL ?>admin/team/index.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>จัดการทีม</a>
+                                    <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
                                     <?php
                                     $ops = [
                                         "title" => "ยืนยันการลบข้อมูล",
