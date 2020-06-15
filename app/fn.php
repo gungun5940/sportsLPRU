@@ -135,9 +135,9 @@ function showSex($sex){
 //STATUS
 function status(){
 	$_status = [];
-	$_status[] = ['id'=>0, 'name'=>'รอตรวจสอบ', 'class'=>'btn btn-secondary btn-sm', 'icon'=>'fa fa-info'];
-	$_status[] = ['id'=>1, 'name'=>'อนุมัติ', 'class'=>'btn btn-success btn-sm', 'icon'=>'fa fa-check'];
-	$_status[] = ['id'=>2, 'name'=>'ไม่อนุมัติ', 'class'=>'btn btn-danger btn-sm', 'icon'=>'fa fa-remove'];
+	$_status[] = ['id'=>0, 'name'=>'รอแข่ง', 'class'=>'btn btn-secondary btn-sm text-white', 'icon'=>'fa fa-info'];
+	$_status[] = ['id'=>1, 'name'=>'กำลังแข่ง', 'class'=>'btn btn-primary btn-sm text-white', 'icon'=>'fa fa-info'];
+	$_status[] = ['id'=>2, 'name'=>'สิ้นสุดการแข่ง', 'class'=>'btn btn-success btn-sm text-white', 'icon'=>'fa fa-check'];
 	return $_status;
 }
 function getStatus($status){
