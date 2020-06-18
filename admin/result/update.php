@@ -41,6 +41,10 @@ if (empty($arr["error"])) {
     $sql->value = $value;
     $sql->condition = "WHERE ts_id={$_POST["ts_id"]}";
     if ($sql->update()) {
+
+        $sql->table = "file";
+        $sql->condition = "WHERE ts_id={$_POST["ts_id"]}";
+        $sql->delete();
        
         $typeFile = strtolower(strrchr($_FILES["ts_file"]["name"], "."));
         if( $typeFile = ".pdf" )

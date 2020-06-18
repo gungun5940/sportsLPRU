@@ -17,12 +17,11 @@ if (mysqli_num_rows($query) < 0) {
         // $sql->table = "file";
         // $sql->condition = "WHERE ts_id={$_GET["id"]}";
         // $sql->delete();
-        $ts_id = $_GET["id"];
-
+        $ts_id = $_POST["id"];
         if (!empty($_POST["file_id"])) {
             foreach ($_POST["file_id"] as $key => $file_id) {
                 $sql->table = "file";
-                $sql->condition = "WHERE file_id={$file_id} AND ac_id={$ts_id}";
+                $sql->condition = "WHERE file_id={$file_id} AND ts_id={$ts_id}";
                 $data = mysqli_fetch_assoc($sql->select());
 
                 if (empty($data)) continue; //Check Data

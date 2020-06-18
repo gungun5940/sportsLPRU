@@ -62,7 +62,7 @@ $query = $sql->select();
                                     echo '<a class="' . $status["class"] . '"><i class="' . $status['icon'] . '"></i> ' . $status["name"] . '</a>';
                                     ?>
                                 </td>
-                                <td class="text-center"><a class="btn btn-info text-white">ผลการแข่ง</a></td>
+                                <td class="text-center"><a href="<?= URL ?>admin/result/showfile.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?php echo $res["ts_id"]; ?>" class="btn btn-info text-white">ผลการแข่ง</a></td>
                                 <td class="text-center">
                                     <a href="<?= URL ?>admin/result/form.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?php echo $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
                                     <?php
