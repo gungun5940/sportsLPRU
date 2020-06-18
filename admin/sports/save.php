@@ -12,6 +12,11 @@ foreach ($_POST as $key => $value) {
 
 if( !empty($_POST["sport_name"]) ){
     if( checkStr($_POST["sport_name"]) < 5 ) $arr["error"]["sport_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+
+    if( !checkThai($_POST["sport_name"]) ){
+        $arr["error"]["sport_name"] = "กรุณากรอกภาษาไทย";
+    }
+
     $sql->table = "sport";
 	$sql->condition = "WHERE sport_name='{$_POST["sport_name"]}'";
 	$query = $sql->select();

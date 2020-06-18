@@ -20,7 +20,7 @@ function checkEng($text){
 	}
 }
 function checkEngThai($text){
-	if( !preg_match("/^[ก-๙a-zA-Z\s]+$/",$text) ){
+	if( !preg_match("/^[a-zA-Zก-๙\s]+$/",$text) ){
 		return false;
 	}
 	else{
@@ -85,7 +85,7 @@ function DateJQToPHP($strDate){
 }
 
 //SECURITY
-function hashPassword($value){
+function hashPassword($value, $options=[]){
 	$cost = isset($options['rounds']) ? $options['rounds'] : 10;
 	$hash = password_hash($value, PASSWORD_BCRYPT, ['cost' => $cost]);
 	if ($hash === false) {
@@ -135,9 +135,9 @@ function showSex($sex){
 //STATUS
 function status(){
 	$_status = [];
-	$_status[] = ['id'=>0, 'name'=>'รอแข่ง', 'class'=>'btn btn-secondary btn-sm text-white', 'icon'=>'fa fa-info'];
-	$_status[] = ['id'=>1, 'name'=>'กำลังแข่ง', 'class'=>'btn btn-primary btn-sm text-white', 'icon'=>'fa fa-info'];
-	$_status[] = ['id'=>2, 'name'=>'สิ้นสุดการแข่ง', 'class'=>'btn btn-success btn-sm text-white', 'icon'=>'fa fa-check'];
+	$_status[] = ['id'=>1, 'name'=>'รอแข่ง', 'class'=>'btn btn-secondary btn-sm text-white', 'icon'=>'fas fa-clock'];
+	$_status[] = ['id'=>2, 'name'=>'กำลังแข่ง', 'class'=>'btn btn-primary btn-sm text-white', 'icon'=>'fas fa-hourglass-start'];
+	$_status[] = ['id'=>3, 'name'=>'สิ้นสุดการแข่ง', 'class'=>'btn btn-success btn-sm text-white', 'icon'=>'fa fa-check'];
 	return $_status;
 }
 function getStatus($status){
