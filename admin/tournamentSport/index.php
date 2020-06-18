@@ -62,6 +62,7 @@ if( !empty($_GET["id"]) ){
                                 <td class="text-center">
                                     <a href="<?= URL ?>admin/team/index.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["ts_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>จัดการทีม</a>
                                     <a href="<?= URL ?>admin/tournamentSport/form.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
+                                    <a href="<?= URL ?>admin/match/index.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["ts_id"]; ?>" class="btn btn-info"><i class="far fa-edit mr-1"></i>MATCH</a>
                                     <?php
                                     $ops = [
                                         "title" => "ยืนยันการลบข้อมูล",

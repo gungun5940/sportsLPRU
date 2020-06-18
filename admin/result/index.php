@@ -73,7 +73,7 @@ $query = $sql->select();
                                         "textconfirm" => "ลบข้อมูล"
                                     ];
                                     ?>
-                                    <a href="<?= URL ?>admin/sports/delete.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["ts_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
+                                    <a href="<?= URL ?>admin/result/delete.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["ts_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
                                         <i class="fa fa-trash"></i> ลบ
                                     </a>
                                 </td>

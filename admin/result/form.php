@@ -70,7 +70,6 @@ $action = URL . "admin/result/update.php?page=sport&sub=result";
 									}
 								?>
 									<option <?= $sel ?> value="<?= $value["id"] ?>"><?= $value["name"] ?></option>
-									<!-- echo '<option value="' . $value["id"] . '">' . $value["name"] . '</option>'; -->
 									<?php
 								}
 								?>
