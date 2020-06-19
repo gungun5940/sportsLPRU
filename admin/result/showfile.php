@@ -7,6 +7,7 @@ $sql = new SQLiManager();
 if (!empty($_GET["id"])) {
     $sql->table = "file";
     $sql->field = "*";
+    $sql->condition = "WHERE ts_id = {$_GET['id']}";
     $query = $sql->select();
     while ($row = $query->fetch_object()) {
         $pdf = $row->ts_file;
@@ -16,7 +17,7 @@ if (!empty($_GET["id"])) {
     if (!file_exists($file)) {
         die("NO FILE HERE");
     }
-    
+
     // Add header to load pdf file
     header('Content-type: application/pdf');
     // header('Content-Disposition: attachment; filename="' . $file . '"'); //download file
