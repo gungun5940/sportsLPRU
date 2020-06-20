@@ -12,6 +12,7 @@ include($_pathURL . "admin/layouts/menu.php");
 if( !empty($_GET["id"]) ){
   $sql->table = "team";
   $sql->field = "*";
+  $sql->condition = "WHERE ts_id = {$_GET['id']}";
   $query = $sql->select();
 } else {
   header("location:" . URL . "admin/team/index.php?page=sport&sub=team");
