@@ -13,6 +13,23 @@
   <!-- /.control-sidebar -->
 </div>
 
+<!-- Start Modal -->
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <!-- jQuery -->
 <script src="<?=PLUGINS?>jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

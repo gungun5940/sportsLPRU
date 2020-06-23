@@ -49,7 +49,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="index.php">หน้าแรก</a>
                 </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         ชนิดกีฬา
                     </a>
@@ -59,7 +59,7 @@
                         <a class="dropdown-item" href="#">รายงาน</a>
                         <a class="dropdown-item" href="#">รายงาน</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         ตารางการแข่งขัน

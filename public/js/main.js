@@ -8,6 +8,9 @@ if ( typeof Object.create !== 'function' ) {
 }
 
 (function( $ ) {
+
+	var URL = window.location.origin + '/sportsLPRU/';
+
 	$.fn.sweetalert = function( result ){
 		if( result.alert === false ){
 			return false;
@@ -150,6 +153,10 @@ if ( typeof Object.create !== 'function' ) {
 					window.location = res.url;
 				}, res.timer);
 			}
+
+			// Clear Modal And Hide After Success //
+			$(".modal").modal('hide');
+			$.fn.clearModal();
 		}
 		else{
 			res.alert = res.alert || false;
@@ -204,7 +211,80 @@ if ( typeof Object.create !== 'function' ) {
         		$.fn.sweetalert( {type:"error", title:"เกิดข้อผิดพลาด...", "timer":2000} );
         	}
     	});
-    };
+	};
+	
+	$.fn.setModal = function( res ){
+		var modal = $(".modal");
+
+		if( !res.attr('href') ){
+			$.fn.sweetalert( {type:"error", title:"เกิดข้อผิดพลาด...", text:"กรุณาระบุ a.href สำหรับโหลดข้อมูล", "timer":2000} );
+			return false;
+		}
+
+		$.get( res.attr('href'), function( result ) {
+
+			if( !result.bgClose ){
+				modal.modal({backdrop: 'static', keyboard: false});
+			}
+
+			var setCenter = result.center || "true";
+
+			var $elem = $(result.form || '<div>').addClass("modal-content").addClass( result.addClass ).addClass( result.style ? 'style-'+result.style: '' );
+
+			if( result.hiddenInput ){
+				$.each( result.hiddenInput, function(i, input) {
+					var hiddenInput = $.fn.setHiddenInput( input );
+					$elem.append( hiddenInput );
+				});
+			}
+
+			if( result.title || result.headClose ){
+				$elem.append( $('<div>', {class:"modal-header"}) );
+			}
+			if( result.title ){
+				$elem.find('.modal-header').append(
+					$('<h5>', {class:'modal-title'}).html( result.title )
+				);
+			}
+			if( result.headClose ){
+				$elem.find('.modal-header').append( 
+					$('<button>', {class:'close', 'data-dismiss':'modal', 'aria-label':'Exit'}).append( 
+						$('<span>', {'aria-hidden':'true'}).html('&times;') 
+					)
+				);
+			}
+			if( result.body ){
+				$elem.append( $('<div>', {class:"modal-body"}).html( result.body ) );
+			}
+			if( result.btnclose || result.btnsubmit ){
+				$elem.append( $('<div>', {class:"modal-footer clearfix"}) );
+				if( result.btnclose ){
+					$elem.find('.modal-footer').append( result.btnclose );
+				}
+				if( result.btnsubmit ){
+					$elem.find('.modal-footer').append( result.btnsubmit );
+				}
+			}
+			if( setCenter == "true" ){
+				modal.find('.modal-dialog').addClass('modal-dialog-centered')
+			}
+
+			modal.find('.modal-dialog').empty(); //Clear Old Modal
+			modal.find('.modal-dialog').addClass( result.dialogClass ).append( $elem );
+			modal.modal('show');
+		}, 'json');
+	};
+
+	$.fn.setHiddenInput = function( input ){
+		return $('<input>', {type:"hidden", "name":input.name, "value":input.value});
+	};
+
+	$.fn.clearModal = function(){
+		var modal = $('.modal');
+		setTimeout(function(){
+			modal.find(".modal-dialog").empty();
+		}, 400);
+	};
 
 })( jQuery );
 
@@ -233,4 +313,14 @@ $(".js-img").change(function(){
 
 $(".js-select").change(function(){
 	$.fn.onUpdate( $(this) );
+});
+
+$("a[data-plugins=modal]").click(function(){
+	$.fn.setModal( $(this) );
+	return false;
+});
+
+$("body").delegate('[data-dismiss=modal]', 'click', function(event) {
+	var modal = $(".modal");
+	$.fn.clearModal();
 });
