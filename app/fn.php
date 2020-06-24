@@ -3,6 +3,14 @@
 function checkStr( $text , $format = 'utf-8' ){
 	return mb_strlen( $text , $format );
 }
+function checkNum($text){
+	if( !preg_match('/^[0-9]+$/i',$text) ){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
 function checkEngNum($text){
 	if( !preg_match('/^[a-z0-9A-Z\s]+$/i',$text) ){
 		return false;

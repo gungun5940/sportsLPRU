@@ -33,7 +33,10 @@ if( !empty($_POST["tournament_name"]) ){
     if( $old["tournament_name"] == $_POST["tournament_name"] ) $has = false;
     
 
-    if( checkStr($_POST["tournament_name"]) < 5 ) $arr["error"]["tournament_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+	if( checkStr($_POST["tournament_name"]) < 5 ) $arr["error"]["tournament_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+	if( !checkEngThai($_POST["tournament_name"]) ){
+        $arr["error"]["tournament_name"] = "กรุณากรอกภาษาไทยหรือภาษาอังกฤษ";
+    }
     $sql->table = "tournament";
 	$sql->condition = "WHERE tournament_name='{$_POST["tournament_name"]}'";
 	$query = $sql->select();
@@ -50,7 +53,21 @@ if( empty($arr["error"]) ){
 
         $sql->table = "tournament_sport";
         $sql->condition = "WHERE tournament_id={$_POST["tournament_id"]}";
-        $sql->delete();
+		$sql->delete();
+
+		//* DELETE PLAYER */
+		$sql->table = "team";
+		$sql->condition = "WHERE tournament_id={$_POST["tournament_id"]}";
+		while($team = mysqli_fetch_assoc($sql->select())){
+			$sql->table = "player";
+			$sql->condition = "WHERE team_id={$team["team_id"]}";
+			$sql->delete();
+		}
+
+		//* DELETE TEAM */
+		$sql->table = "team";
+		$sql->condition = "WHERE tournament_id={$_POST["tournament_id"]}";
+		$sql->delete();
 
         //INSERT ประเภทกีฬา
         for($i = 0; $i < count($_POST["sport_id"]); $i++){

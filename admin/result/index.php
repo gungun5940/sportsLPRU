@@ -35,13 +35,11 @@ $query = $sql->select();
                     <thead>
                         <tr class="text-center table-info">
                             <th width="5%">ลำดับ</th>
-                            <th width="10%">วันที่เริ่ม</th>
-                            <th width="10%">วันที่สิ้นสุด</th>
-                            <th width="15%">ชื่อ Tounament</th>
+                            <th width="15%">วันที่เริ่ม</th>
+                            <th width="15%">วันที่สิ้นสุด</th>
+                            <th width="25%">ชื่อ Tounament</th>
                             <th width="15%">ชนิดกีฬา</th>
-                            <th width="15%">สถานะการแข่ง</th>
-                            <th width="15%">ผลการแข่ง</th>
-                            <th width="15%">จัดการ</th>
+                            <th width="25%">จัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,14 +55,7 @@ $query = $sql->select();
                                 <td><?php echo $res["tournament_name"]; ?></td>
                                 <td><?php echo $res["sport_name"]; ?></td>
                                 <td class="text-center">
-                                    <?php
-                                    $status = getStatus($res["ts_status"]);
-                                    echo '<a class="' . $status["class"] . '"><i class="' . $status['icon'] . '"></i> ' . $status["name"] . '</a>';
-                                    ?>
-                                </td>
-                                <td class="text-center"><a href="<?= URL ?>admin/result/showfile.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?php echo $res["ts_id"]; ?>" class="btn btn-info text-white"><i class="fas fa-file mr-1"></i>ผลการแข่ง</a></td>
-                                <td class="text-center">
-                                    <a href="<?= URL ?>admin/result/form.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?php echo $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
+                                    <a href="<?= URL ?>admin/result/form.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?php echo $res["ts_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไขสถานะ</a>
                                     <?php
                                     $ops = [
                                         "title" => "ยืนยันการลบข้อมูล",

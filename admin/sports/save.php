@@ -11,10 +11,17 @@ foreach ($_POST as $key => $value) {
 }
 
 if( !empty($_POST["sport_name"]) ){
-    if( checkStr($_POST["sport_name"]) < 5 ) $arr["error"]["sport_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+    if( checkStr($_POST["sport_name"]) < 2 ) $arr["error"]["sport_name"] = "กรุณากรอกข้อมูล 2 ตัวอักษรขึ้นไป";
+    
 
-    if( !checkThai($_POST["sport_name"]) ){
-        $arr["error"]["sport_name"] = "กรุณากรอกภาษาไทย";
+    if( !checkEngThai($_POST["sport_name"]) ){
+        $arr["error"]["sport_name"] = "กรุณากรอกภาษาไทยและภาษาอังกฤษ";
+    }
+    
+    if( checkStr($_POST["sport_player"]) > 2 ) $arr["error"]["sport_player"] = "กรุณากรอกข้อมูล 1-2 ตัวเลขเท่านั้น";
+
+    if( !checkNum($_POST["sport_player"]) ){
+        $arr["error"]["sport_player"] = "กรุณากรอกจำนวนผู้เล่นต่อทีม";
     }
 
     $sql->table = "sport";

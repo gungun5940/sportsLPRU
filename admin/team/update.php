@@ -33,7 +33,8 @@ if( !empty($_POST["team_name"]) ){
     if( $old["team_name"] == $_POST["team_name"] ) $has = false;
     
 
-    if( checkStr($_POST["team_name"]) < 5 ) $arr["error"]["team_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+	if( checkStr($_POST["team_name"]) < 2 ) $arr["error"]["team_name"] = "กรุณากรอกข้อมูล 2 ตัวอักษรขึ้นไป";
+	
     $sql->table = "team";
 	$sql->condition = "WHERE team_name='{$_POST["team_name"]}'";
 	$query = $sql->select();
@@ -47,11 +48,18 @@ if( empty($arr["error"]) ){
 	$sql->value = "team_name='{$_POST["team_name"]}'";
 	$sql->condition = "WHERE team_id={$_POST["team_id"]}";
 	if( $sql->update() ){
+
+		//** **/
+		$sql->table = "player";
+		$sql->condition = "WHERE team_id={$_POST["team_id"]}";
+		$sql->delete();
+
 		foreach( $_POST["player_name"] as $seq => $name ){
             if( empty($name) ) continue;
             $sql->table = "player";
             $sql->field = "team_id, player_name, seq";
-            $sql->value = "'{$_POST["team_id"]}', '{$name}', '{$seq}'";
+			$sql->value = "'{$_POST["team_id"]}', '{$name}', '{$seq}'";
+			$sql->insert();
         }
 	$arr = [
 			"type" => "success",

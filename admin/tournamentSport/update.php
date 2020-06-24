@@ -28,19 +28,22 @@ foreach ($_POST as $key => $value) {
 
 //Check
 
-// if( !empty($_POST["tournament_name"]) ){
-//     $has = true;
-//     if( $old["tournament_name"] == $_POST["tournament_name"] ) $has = false;
+if( !empty($_POST["tournament_name"]) ){
+    $has = true;
+    if( $old["tournament_name"] == $_POST["tournament_name"] ) $has = false;
     
 
-//     if( checkStr($_POST["tournament_name"]) < 5 ) $arr["error"]["tournament_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
-//     $sql->table = "tournament";
-// 	$sql->condition = "WHERE tournament_name='{$_POST["tournament_name"]}'";
-// 	$query = $sql->select();
-// 	if( mysqli_num_rows($query) > 0 && $has ){
-// 		$arr["error"]["tournament_name"] = "ตรวจสอบพบข้อมูลทีมซ้ำกันในฐานข้อมูล";
-// 	}
-// }
+	if( checkStr($_POST["ts_place"]) < 5 ) $arr["error"]["ts_place"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
+	if( !checkEngThai($_POST["ts_place"]) ){
+        $arr["error"]["ts_place"] = "กรุณากรอกภาษาไทยหรือภาษาอังกฤษ";
+    }
+    // $sql->table = "tournament";
+	// $sql->condition = "WHERE tournament_name='{$_POST["tournament_name"]}'";
+	// $query = $sql->select();
+	// if( mysqli_num_rows($query) > 0 && $has ){
+	// 	$arr["error"]["tournament_name"] = "ตรวจสอบพบข้อมูลทีมซ้ำกันในฐานข้อมูล";
+	// }
+}
 /* END CHECK ZONE */
 if( empty($arr["error"]) ){
 	$sql->table = "tournament_sport";
