@@ -30,7 +30,7 @@ if( !empty($_POST["password"]) && !empty($_POST["password2"]) ){
 	}
 }
 
-$sql->table = "users";
+$sql->table = "user";
 $sql->condition = "WHERE username='{$_POST['username']}'";
 $query = $sql->select();
 if( mysqli_num_rows($query) > 0 ){
@@ -56,7 +56,7 @@ if( empty($arr["error"]) ){
 	}
 	/* END BUILD */
 
-	$sql->table = "users";
+	$sql->table = "user";
 	$sql->field = $field;
 	$sql->value = $value;
 	if( $sql->insert() ){

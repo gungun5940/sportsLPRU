@@ -9,7 +9,7 @@ include($_pathURL."admin/layouts/navbar.php");
 //MENU
 include($_pathURL."admin/layouts/menu.php");
 
-$sql->table = "users";
+$sql->table = "user";
 $query = $sql->select();
 ?>
 <!-- Content -->

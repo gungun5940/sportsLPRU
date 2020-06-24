@@ -6,8 +6,8 @@ include("../../app/fn.php");
 $sql = new SQLiManager();
 
 /* OLD DATA FOR CHECK */
-$sql->table = "users";
-$sql->condition = "WHERE id={$_POST["id"]}";
+$sql->table = "user";
+$sql->condition = "WHERE user_id={$_POST["id"]}";
 $query = $sql->select();
 if( mysqli_num_rows($query) <= 0 ){
 	$arr = [
@@ -26,26 +26,26 @@ foreach ($_POST as $key => $value) {
 
 if( !empty($_POST["password"]) && !empty($_POST["password2"]) ){
 	if( checkStr($_POST["password"]) < 5 ) $arr["error"]["password"] = "ความยาวของ Password ต้องมีตั้งแต่ 5 ตัวอักษรขึ้นไป";
-	if( checkStr($_POST["password2"]) < 5 ) $arr["error"]["password2"] = "ความยาวของ Confim Password ต้องมีตั้งแต่ 5 ตัวอักษรขึ้นไป";
+	// if( checkStr($_POST["password2"]) < 5 ) $arr["error"]["password2"] = "ความยาวของ Confim Password ต้องมีตั้งแต่ 5 ตัวอักษรขึ้นไป";
 
-	if( $_POST["password"] != $_POST["password2"] ){
-		$arr["error"]["password"] = "รหัสผ่านที่กรอกไม่ตรงกัน";
-		$arr["error"]["password2"] = "รหัสผ่านที่กรอกไม่ตรงกัน";
-	}
+	// if( $_POST["password"] != $_POST["password2"] ){
+	// 	$arr["error"]["password"] = "รหัสผ่านที่กรอกไม่ตรงกัน";
+	// 	$arr["error"]["password2"] = "รหัสผ่านที่กรอกไม่ตรงกัน";
+	// }
 }
 
 if( empty($arr["error"]) ){
 	$value = '';
 	foreach ($_POST as $key => $val) {
-		if( $key == "id" || $key == "password2" ) continue;
+		if( $key == "id" || $key == "password" ) continue;
 
 		$value .= !empty($value) ? "," : "";
 		$value .= "{$key}='".hashPassword($val)."'";
 	}
 
-	$sql->table = "users";
+	$sql->table = "user";
 	$sql->value = $value;
-	$sql->condition = "WHERE id={$_POST["id"]}";
+	$sql->condition = "WHERE user_id={$_POST["id"]}";
 	if( $sql->update() ){
 	$arr = [
 			"type" => "success",

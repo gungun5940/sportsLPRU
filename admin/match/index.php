@@ -72,18 +72,18 @@ if(!empty($_GET["id"])){
                         <tr>
                             <td width = "20%"><?=$round['match_time']?></td>
                             <td width = "20%" class="text_right"><span class="">ทีม <?=$round['team_a_name']?></span></td>
-                            <td width = "10%" class="text_center"><a class="btn btn-sm btn-success text-white">0 : 0</a></td>
+                            <td width = "10%" class="text_center"><a class="btn btn-sm btn-success text-white"> <?=$round['score_a']?> : <?= $round['score_b']?> </a></td>
                             <td width = "20%" class="text_left"> ทีม <?=$round['team_b_name']?></span></a></td>
                             <td width = "30%" class="text-right">
-                                <a data-plugins="modal" href="<?= URL ?>admin/match/formModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
-                                <a data-plugins="modal" href="<?= URL ?>admin/match/formScoreModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=" class="btn btn-primary"><i class="fas fa-edit"></i>คะแนน</a>
+                                <a data-plugins="modal" href="<?= URL ?>admin/match/formModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $round["match_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
+                                <a data-plugins="modal" href="<?= URL ?>admin/match/formScoreModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $round["match_id"]; ?>" class="btn btn-primary"><i class="fas fa-edit"></i>คะแนน</a>
                                 <?php
-                                // $ops = [
-                                //     "title" => "ยืนยันการลบข้อมูล",
-                                //     "text" => "คุณต้องการลบข้อมูลคู่" . $res["tournament_name"] ."กับ". $res["tournament_name"] . "หรือไม่ ?",
-                                //     "btnconfirm" => "btn btn-danger m-1",
-                                //     "textconfirm" => "ลบข้อมูล"
-                                // ];
+                                $ops = [
+                                    "title" => "ยืนยันการลบข้อมูล",
+                                    "text" => "คุณต้องการลบข้อมูลคู่" . $round['team_a_name'] ."กับ". $round['team_b_name'] . "หรือไม่ ?",
+                                    "btnconfirm" => "btn btn-danger m-1",
+                                    "textconfirm" => "ลบข้อมูล"
+                                ];
                                 ?>
                                 <a href="<?= URL ?>admin/match/delete.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["ts_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
                                     <i class="fa fa-trash"></i> ลบ

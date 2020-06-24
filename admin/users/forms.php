@@ -12,8 +12,8 @@ $_title = "เพิ่มข้อมูลผู้ใช้งาน";
 $_action = URL."admin/users/save.php?page={$_GET["page"]}";
 //EDIT DATA
 if( !empty($_GET["id"]) ){
-	$sql->table = "users";
-	$sql->condition = "WHERE id={$_GET["id"]} LIMIT 1";
+	$sql->table = "user";
+	$sql->condition = "WHERE user_id={$_GET["id"]} LIMIT 1";
 	$query = $sql->select();
 	if( mysqli_num_rows($query) <= 0 ){
 		header('location:'.URL.'admin/users/?page='.$_GET['page']);

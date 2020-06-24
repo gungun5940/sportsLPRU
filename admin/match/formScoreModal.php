@@ -5,19 +5,17 @@ include("../../app/fn.php");
 
 $sql = new SQLiManager();
 
-$title = "แก้ไขคะแนน";
+if (!empty($_GET["id"])) {
+  $title = "แก้ไขคะแนน";
+  $sql->table = "matchs";
+  $sql->field = "*";
+  $sql->condition = "WHERE match_id={$_GET["id"]}";
+  $res = mysqli_fetch_assoc($sql->select());
 
-$action = URL."admin/match/update.php?page=sport&sub=match";
+  $action = URL."admin/match/update.php?page=sport&sub=match";
 
-// if (!empty($_GET["id"])) {
-//   $title = "แก้ไขคะแนน";
-// //   $sql->table = "match";
-// //   $sql->field = "*";
-// //   $sql->condition = "WHERE match_id={$_GET["id"]}";
-// //   $res = mysqli_fetch_assoc($sql->select());
-
-//   $action = URL."admin/match/update.php?page=sport&sub=match";
-// }
+  $arr['hiddenInput'][] = ['name'=>'match_id', 'value'=>$_GET["id"]];
+}
 
 $arr['title'] = $title;
 $arr['headClose'] = true;

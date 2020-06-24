@@ -6,8 +6,8 @@ include("../../app/fn.php");
 $sql = new SQLiManager();
 
 /* OLD DATA FOR CHECK */
-$sql->table = "users";
-$sql->condition = "WHERE id={$_POST["id"]}";
+$sql->table = "user";
+$sql->condition = "WHERE user_id={$_POST["id"]}";
 $query = $sql->select();
 if( mysqli_num_rows($query) <= 0 ){
 	$arr = [
@@ -40,7 +40,7 @@ if( !empty($_POST["username"]) ){
 $haschange = true;
 if( $old["username"] == $_POST["username"] ) $haschange = false;
 
-$sql->table = "users";
+$sql->table = "user";
 $sql->condition = "WHERE username='{$_POST['username']}'";
 $query = $sql->select();
 if( mysqli_num_rows($query) > 0 && $haschange ){
@@ -56,9 +56,9 @@ if( empty($arr["error"]) ){
 		$value .= "{$key}='{$val}'";
 	}
 
-	$sql->table = "users";
+	$sql->table = "user";
 	$sql->value = $value;
-	$sql->condition = "WHERE id={$_POST["id"]}";
+	$sql->condition = "WHERE user_id={$_POST["id"]}";
 	if( $sql->update() ){
 	$arr = [
 			"type" => "success",
