@@ -10,6 +10,13 @@ foreach ($_POST as $key => $value) {
     if (empty($value)) $arr["error"][$key] = "กรุณากรอกข้อมูลให้ครบถ้วน";
 }
 
+if( !empty($_POST["team_a"]) && !empty($_POST["team_b"]) ){
+    if( $_POST["team_a"] == $_POST["team_b"] ){
+        $arr['error']['team_a'] = 'กรุณาเลือกทีมที่แตกต่างกัน';
+        $arr['error']['team_b'] = 'กรุณาเลือกทีมที่แตกต่างกัน';
+    }
+}
+
 // if (!empty($_POST["team_name"])) {
     // if (checkStr($_POST["team_name"]) < 5) $arr["error"]["team_name"] = "กรุณากรอกข้อมูล 5 ตัวอักษรขึ้นไป";
     // $sql->table = "team";
@@ -22,13 +29,24 @@ foreach ($_POST as $key => $value) {
 
 if (empty($arr["error"])) {
     $sql->table = "matchs";
-    $sql->field = "tournament_id,sport_id,ts_id,team_a,team_b,team_win,match_date,score_a,score_b";
-    $sql->value = "'{$_POST["tournament_id"]}','{$_POST["sport_id"]}','{$_POST["ts_id"]}','{$_POST["team_a"]}','{$_POST["team_b"]}','{$_POST["team_win"]}','{$_POST["match_date"]}','{$_POST["score_a"]}','{$_POST["score_b"]}'";
+    $sql->field = "tournament_id,sport_id,ts_id,team_a,team_b,match_date";
+    $sql->value = "'{$_POST["tournament_id"]}','{$_POST["sport_id"]}','{$_POST["ts_id"]}','{$_POST["team_a"]}','{$_POST["team_b"]}','{$_POST["match_date"]}'";
     if ($sql->insert()) {
+
+        $sql->table = "team";
+        $sql->value = "team_status=1";
+        $sql->condition = "WHERE team_id={$_POST["team_a"]}";
+        $sql->update();
+
+        $sql->table = "team";
+        $sql->value = "team_status=1";
+        $sql->condition = "WHERE team_id={$_POST["team_b"]}";
+        $sql->update();
+
         $arr = [
             "type" => "success",
             "title" => "บันทึกข้อมูลเรียบร้อยแล้ว",
-            "url" => URL . 'admin/match/?page=sport&sub=match',
+            "url" => URL . 'admin/match/index.php?page=sport&sub=tournament&id='.$_POST['ts_id'],
             "status" => 200
         ];
     } else {

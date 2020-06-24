@@ -43,6 +43,17 @@ foreach ($_POST as $key => $value) {
 // }
 /* END CHECK ZONE */
 if( empty($arr["error"]) ){
+
+	$sql->table = "team";
+	$sql->value = "team_status=0";
+	$sql->condition = "WHERE team_id={$old["team_a"]}";
+	$sql->update();
+
+	$sql->table = "team";
+	$sql->value = "team_status=0";
+	$sql->condition = "WHERE team_id={$old["team_b"]}";
+	$sql->update();
+
 	$value = '';
 	foreach ($_POST as $key => $val) {
 		if( $key == "match_id" ) continue;
@@ -56,6 +67,17 @@ if( empty($arr["error"]) ){
     $sql->value = $value;
 	$sql->condition = "WHERE match_id={$_POST["match_id"]}";
 	if( $sql->update() ){
+
+		$sql->table = "team";
+        $sql->value = "team_status=1";
+        $sql->condition = "WHERE team_id={$_POST["team_a"]}";
+        $sql->update();
+
+        $sql->table = "team";
+        $sql->value = "team_status=1";
+        $sql->condition = "WHERE team_id={$_POST["team_b"]}";
+        $sql->update();
+
 	$arr = [
 			"type" => "success",
 			"title" => "บันทึกข้อมูลเรียบร้อยแล้ว",

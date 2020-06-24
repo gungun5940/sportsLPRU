@@ -75,7 +75,7 @@ if(!empty($_GET["id"])){
                             <td width = "10%" class="text_center"><a class="btn btn-sm btn-success text-white"> <?=$round['score_a']?> : <?= $round['score_b']?> </a></td>
                             <td width = "20%" class="text_left"> ทีม <?=$round['team_b_name']?></span></a></td>
                             <td width = "30%" class="text-right">
-                                <a data-plugins="modal" href="<?= URL ?>admin/match/formModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $round["match_id"]; ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
+                                <a data-plugins="modal" href="<?= URL ?>admin/match/formModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $round["match_id"]; ?>&ts=<?= $_GET["id"] ?>" class="btn btn-warning"><i class="fa fa-pen"></i>แก้ไข</a>
                                 <a data-plugins="modal" href="<?= URL ?>admin/match/formScoreModal.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $round["match_id"]; ?>" class="btn btn-primary"><i class="fas fa-edit"></i>คะแนน</a>
                                 <?php
                                 $ops = [

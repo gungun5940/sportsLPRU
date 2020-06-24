@@ -295,7 +295,7 @@ $('body').delegate('form.form-submit','submit',function(e){
 	$.fn.inlineSubmit( $form );
 });
 
-$("form.form-submit").find("input, textarea, checkbox, select, radio").change(function(){
+$('body').delegate('form.form-submit input,form.form-submit textarea,form.form-submit checkbox,form.form-submit select,form.form-submit radio, form.form-submit checkbox', 'change', function(event) {
 	var input = $(this);
 	var div = input.closest("div");
 	input.removeClass('is-invalid');
