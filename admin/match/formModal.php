@@ -71,7 +71,7 @@ $arr['form'] = '<form class="form-submit" action="' . $action . '" method="POST"
 $datetime = '';
 if( !empty($result["match_date"]) ){
         $date = date("Y-m-d", strtotime($result["match_date"]));
-        $time = date("H:m", strtotime($result["match_date"]));
+        $time = date("H:i", strtotime($result["match_date"]));
         $datetime = "{$date}T{$time}";
 }
 

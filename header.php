@@ -1,3 +1,17 @@
+
+<?php 
+$_pathURL = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."sportsLPRU".DIRECTORY_SEPARATOR;
+include($_pathURL."config.php");
+include($_pathURL."app/SQLiManager.php");
+include($_pathURL."app/check_auth.php");
+if( empty($auth) ) {
+  header("location:".URL."admin/login.php"); //NOT HAVE DATA IN DATABASE
+}
+$sql = new SQLiManager(); //SET FOR PAGES
+
+//APP
+include($_pathURL."app/fn.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +38,14 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- DataTable -->
+    <link rel="stylesheet" href="<?= PLUGINS ?>datatables-bs4/css/dataTables.bootstrap4.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
     <!-- =======================================================
   * Template Name: EstateAgency - v2.0.0
@@ -33,7 +55,7 @@
   ======================================================== -->
 </head>
 <!-- ======= Header/Navbar ======= -->
-<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg ">
     <div class="container">
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span></span>
@@ -47,7 +69,7 @@
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.php">หน้าแรก</a>
+                    <a class="nav-link " href="index.php">หน้าแรก</a>
                 </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,15 +83,8 @@
                     </div>
                 </li> -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ตารางการแข่งขัน
+                    <a class="nav-link " href="show_tournament.php" >   ข้อมูลการแข่งขัน
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">รายงาน</a>
-                        <a class="dropdown-item" href="#">รายงาน</a>
-                        <a class="dropdown-item" href="#">รายงาน</a>
-                        <a class="dropdown-item" href="#">รายงาน</a>
-                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,4 +104,4 @@
     </div>
 </nav><!-- End Header/Navbar -->
 
-<body>
+</body>

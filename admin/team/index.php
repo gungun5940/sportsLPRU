@@ -9,7 +9,7 @@ include($_pathURL . "admin/layouts/navbar.php");
 //MENU
 include($_pathURL . "admin/layouts/menu.php");
 
-if( !empty($_GET["id"]) ){
+if (!empty($_GET["id"])) {
   $sql->table = "team";
   $sql->field = "*";
   $sql->condition = "WHERE ts_id = {$_GET['id']}";
@@ -27,7 +27,7 @@ if( !empty($_GET["id"]) ){
           <h1 class="m-0 text-dark">จัดการทีม</h1>
         </div>
         <div class="col-sm-6">
-          <a href="<?= URL ?>admin/team/form.php?page=team&sub=<?=$_GET["sub"]?>&ts=<?=$_GET["id"]?>" class="btn btn-primary text-white float-right">เพิ่มทีม</a>
+          <a href="<?= URL ?>admin/team/form.php?page=team&sub=<?= $_GET["sub"] ?>&ts=<?= $_GET["id"] ?>" class="btn btn-primary text-white float-right">เพิ่มทีม</a>
         </div>
       </div>
     </div>
@@ -54,8 +54,8 @@ if( !empty($_GET["id"]) ){
                 <td class="text-center"><?php echo $num; ?></td>
                 <td><?php echo $res["team_name"]; ?></td>
                 <td class="text-center">
-                  <a href="<?= URL ?>admin/player/index.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>สมาชิก</a>
-                  <a href="<?= URL ?>admin/team/form.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"]; ?>&ts=<?=$_GET["id"]?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
+                  <a href="<?= URL ?>admin/player/index.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["team_id"]; ?>" class="btn btn-success"><i class="fa fa-users mr-1"></i>สมาชิก</a>
+                  <a href="<?= URL ?>admin/team/form.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["team_id"]; ?>&ts=<?= $_GET["id"] ?>" class="btn btn-warning"><i class="fa fa-pen mr-1"></i>แก้ไข</a>
                   <?php
                   $ops = [
                     "title" => "ยืนยันการลบข้อมูล",
@@ -64,7 +64,7 @@ if( !empty($_GET["id"]) ){
                     "textconfirm" => "ลบข้อมูล"
                   ];
                   ?>
-                  <a href="<?= URL ?>admin/team/delete.php?page=<?= $_GET["page"] ?>&sub=<?=$_GET["sub"]?>&id=<?= $res["team_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
+                  <a href="<?= URL ?>admin/team/delete.php?page=<?= $_GET["page"] ?>&sub=<?= $_GET["sub"] ?>&id=<?= $res["team_id"] ?>" class="btn btn-danger btn-confirm" data-options="<?= stringify($ops) ?>">
                     <i class="fa fa-trash"></i> ลบ
                   </a>
                 </td>

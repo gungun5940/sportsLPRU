@@ -1,5 +1,5 @@
 <?php 
-$_title = "จัดการชนิดกีฬา";
+$_title = "ชนิดกีฬา";
 // HEADER
 include("../layouts/header.php");
 
@@ -29,7 +29,7 @@ if (!empty($_GET["id"])) {
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"><?php echo $title; ?>ชนิดกีฬา</h1>
+          <h1 class="m-0 text-dark"><?php echo $title; ?></h1>
         </div>
 
       </div>

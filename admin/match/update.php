@@ -54,6 +54,7 @@ if( empty($arr["error"]) ){
 	$sql->condition = "WHERE team_id={$old["team_b"]}";
 	$sql->update();
 
+
 	$value = '';
 	foreach ($_POST as $key => $val) {
 		if( $key == "match_id" ) continue;
