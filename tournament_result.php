@@ -27,7 +27,7 @@ if (empty($_GET["id"])) {
 <main id="main">
     <div class="container">
         <div class="card mt-2 mb-2">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-success">
                 <h5 class="text-white"><i class="fas fa-snowboarding"></i> ข้อมูลรายการแข่งขัน</h5>
             </div>
             <div class="card-body">
@@ -43,7 +43,7 @@ if (empty($_GET["id"])) {
                 <?php
                     while($sport = mysqli_fetch_assoc($query2)){
                         ?>
-                        <a href="<?=URL?>tournament_detail.php?id=<?=$_GET["id"]?>&sport=<?=$sport["sport_id"]?>" class="btn btn-primary"><?=$sport['sport_name']?></a>
+                        <a href="<?=URL?>tournament_result.php?id=<?=$_GET["id"]?>&sport=<?=$sport["sport_id"]?>" class="btn btn-success"><?=$sport['sport_name']?></a>
                         <?php
                     }
                     ?>
@@ -55,11 +55,11 @@ if (empty($_GET["id"])) {
             if( !empty($_GET["sport"]) ) {
             ?>
             <div class="card mt-2 mb-2">
-            <div class="card-header bg-primary text-white">
-                <h5 class="text-white"><i class="fas fa-snowboarding"></i> MATCH การแข่งขัน</h5>
+            <div class="card-header bg-success">
+                <h5 class="text-white"><i class="fas fa-snowboarding"></i>คะแนนการแข่งขัน</h5>
             </div>
             <div class="card-body">
-            <?php include("match.php"); ?>
+            <?php include("score.php"); ?>
             </div>
             </div>
             <?php } ?>

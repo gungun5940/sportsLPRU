@@ -30,6 +30,17 @@ if (empty($arr['error'])) {
 	$sql->value = "score_a='{$_POST["score_a"]}', score_b='{$_POST["score_b"]}', match_cutout='{$match_cutout}'";
 	$sql->condition = "WHERE match_id={$old["match_id"]}";
 	if ($sql->update()) {
+
+		$sql->table = "team";
+		$sql->condition = "WHERE team_id={$old["team_a"]}";
+		$sql->value = "team_status=0";
+		$sql->update();
+
+		$sql->table = "team";
+		$sql->condition = "WHERE team_id={$old["team_b"]}";
+		$sql->value = "team_status=0";
+		$sql->update();
+
 		if ($_POST["score_a"] > $_POST["score_b"]) {
 			$teamwin = $old["team_a"];
 
@@ -38,9 +49,9 @@ if (empty($arr['error'])) {
 			$query = $sql->select();
 			$team = mysqli_fetch_assoc($query);
 
-			$point = $team['team_point'] + 1;
+			$point = $team['team_point'] + 3;
 
-			$sql->value = "team_status=0, team_point='{$point}'";
+			$sql->value = "team_point='{$point}'";
 			$sql->update();
 
 			if (!empty($_POST["match_cutout"])) {
@@ -59,9 +70,9 @@ if (empty($arr['error'])) {
 			$query = $sql->select();
 			$team = mysqli_fetch_assoc($query);
 
-			$point = $team['team_point'] + 1;
+			$point = $team['team_point'] + 3;
 
-			$sql->value = "team_status=0, team_point='{$point}'";
+			$sql->value = "team_point='{$point}'";
 			$sql->update();
 
 			if (!empty($_POST["cutout"])) {
@@ -71,6 +82,27 @@ if (empty($arr['error'])) {
 				$sql->update();
 				
 			}
+		}
+
+		if ($_POST["score_b"] == $_POST["score_a"]) {
+			$teamwin = 0;
+			/* SET POINT TEAM B */
+			$sql->table = "team";
+			$sql->condition = "WHERE team_id={$old["team_a"]}";
+			$query = $sql->select();
+			$team = mysqli_fetch_assoc($query);
+			$point = $team['team_point'] + 1;
+			$sql->value = "team_point='{$point}'";
+			$sql->update();
+
+			/* SET POINT TEAM B */
+			$sql->table = "team";
+			$sql->condition = "WHERE team_id={$old["team_b"]}";
+			$query = $sql->select();
+			$team = mysqli_fetch_assoc($query);
+			$point = $team['team_point'] + 1;
+			$sql->value = "team_point='{$point}'";
+			$sql->update();
 		}
 
 		$sql->table = "matchs";

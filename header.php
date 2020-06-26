@@ -3,10 +3,10 @@
 $_pathURL = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."sportsLPRU".DIRECTORY_SEPARATOR;
 include($_pathURL."config.php");
 include($_pathURL."app/SQLiManager.php");
-include($_pathURL."app/check_auth.php");
-if( empty($auth) ) {
-  header("location:".URL."admin/login.php"); //NOT HAVE DATA IN DATABASE
-}
+// include($_pathURL."app/check_auth.php");
+// if( empty($auth) ) {
+//   header("location:".URL."admin/login.php"); //NOT HAVE DATA IN DATABASE
+// }
 $sql = new SQLiManager(); //SET FOR PAGES
 
 //APP
@@ -86,7 +86,7 @@ include($_pathURL."app/fn.php");
                     <a class="nav-link " href="show_tournament.php" >   ข้อมูลการแข่งขัน
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         ผลการแข่งขัน
                     </a>
@@ -96,7 +96,7 @@ include($_pathURL."app/fn.php");
                         <a class="dropdown-item" href="#">รายงาน</a>
                         <a class="dropdown-item" href="#">รายงาน</a>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
         <a href="admin/login.php"><span class="price-a">Login</span></a>

@@ -23,12 +23,13 @@ $query = $sql->select();
 
         <div class="clearfix">
             <div class="card p-2 mb-2">
-                <table class="table table-bordered datatable">
+                <table class="table table-bordered DataTable">
                     <thead>
                         <tr class="text-center table-info">
                             <th width="5%">ลำดับ</th>
                             <th width="25%">ระยะเวลาแข่งขัน</th>
-                            <th width="70%">ชื่อรายการ</th>
+                            <th width="50%">ชื่อรายการ</th>
+                            <th width="20%">การแข่งขัน / คะแนน</th>
                             
                         </tr>
                     </thead>
@@ -50,7 +51,10 @@ $query = $sql->select();
                                     ?></td>
                                     
                                 <td><a href="<?=URL?>tournament_detail.php?id=<?=$res["tournament_id"]?>"><?php echo $res["tournament_name"]; ?></a></td>
-                                
+                                <td class="text-center">
+                                    <a href="<?=URL?>tournament_detail.php?id=<?=$res["tournament_id"]?>" class="btn btn-primary btn-sm">การแข่งขัน</a>
+                                    <a href="<?=URL?>tournament_result.php?id=<?=$res["tournament_id"]?>" class="btn btn-success btn-sm">คะแนน</a>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -62,5 +66,5 @@ $query = $sql->select();
 <!-- End Content -->
 <?php
 //FOOTER
-// include($_pathURL."admin/layouts/footer.php");
+include($_pathURL."footer.php");
 ?>
