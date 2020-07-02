@@ -58,7 +58,7 @@ if( empty($arr["error"]) ){
 	$arr = [
 			"type" => "success",
 			"title" => "บันทึกข้อมูลเรียบร้อยแล้ว",
-            "url" => URL.'admin/admin/player/index.php?page=sport&sub=tournament&id='.$_POST["team_id"],
+            "url" => URL."admin/tournament/?page=sport&sub=tournament",
 			"status" => 200
 		];
 	}
